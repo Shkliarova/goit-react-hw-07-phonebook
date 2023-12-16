@@ -6,8 +6,8 @@ import { addContacts } from "../../redux/operations";
 
 const contactSchema = Yup.object().shape({
     name: Yup.string().required('Required'),
-    number: Yup.string()
-    .matches(/^\d{3}-\d{2}-\d{2}$/g, 'Number format: xxx-xx-xx')
+    phone: Yup.string()
+    .matches(/^\d{3}-\d{3}-\d{4}$/g, 'Number format: xxx-xxx-xxxx')
     .required('Required')
 })
 
@@ -17,7 +17,7 @@ export const ContactForm = () => {
     return(
         <Formik initialValues={{
             name: '',
-            number: ''
+            phone: ''
         }}
         validationSchema={contactSchema}
         onSubmit={(values, actions) => {
@@ -31,8 +31,8 @@ export const ContactForm = () => {
                 </label>
                 <label>
                     Number
-                    <ContactsField type="tel" name="number" placeholder="xxx-xx-xx" required /><br/>
-                    <FormError name="number" component="span"/>
+                    <ContactsField type="tel" name="phone" placeholder="xxx-xxx-xxxx" required /><br/>
+                    <FormError name="phone" component="span"/>
                 </label>
 
                 <FormButton type="submit">Add contact</FormButton>
